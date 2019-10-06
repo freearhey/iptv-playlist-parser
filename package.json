@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git://github.com/freearhey/iptv-playlist-parser.git"
   },
+  "publishConfig":{
+    "registry":"https://registry.npmjs.org/"
+  },
   "keywords": [
     "iptv",
     "playlist",
