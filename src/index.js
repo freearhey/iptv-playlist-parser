@@ -1,4 +1,4 @@
-import M3U8FileParser from 'm3u8-file-parser'
+const M3U8FileParser = require('m3u8-file-parser')
 
 const Parser = {}
 
@@ -57,4 +57,4 @@ function parseHeader(string) {
   return header
 }
 
-export default Parser
+module.exports = Parser
