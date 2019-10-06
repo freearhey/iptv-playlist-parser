@@ -37,7 +37,7 @@ Output:
   tvg: {
     url: 'http://example.com/epg.xml.gz'
   },
-  channels: [
+  items: [
     { 
       name: 'CNN (US)',
       tvg: {
