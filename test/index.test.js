@@ -13,7 +13,7 @@ it('parse playlist', () => {
     tvg: {
       url: 'http://195.154.221.171/epg/guidealbania.xml.gz'
     },
-    channels: [
+    items: [
       { 
         name: 'Channel 1 (Tested)',
         tvg: {

@@ -12,11 +12,11 @@ Parser.parse = (content) => {
     tvg: {
       url: header.attrs['x-tvg-url'] || ''
     },
-    channels: []
+    items: []
   }
 
   for(let segment of result.segments) {
-    const channel = {
+    const item = {
       name: segment.inf.title || '',
       tvg: {
         id: segment.inf['tvg-id'] || segment.inf['tvg-ID'] || '',
@@ -30,7 +30,7 @@ Parser.parse = (content) => {
       url: segment.url || ''
     }
 
-    playlist.channels.push(channel)
+    playlist.items.push(item)
   }
 
   return playlist
