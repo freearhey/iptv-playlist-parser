@@ -1,6 +1,6 @@
 {
   "name": "iptv-playlist-parser",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A basic IPTV playlist parser",
   "main": "src/index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git://github.com/freearhey/iptv-playlist-parser.git"
   },
-  "publishConfig":{
-    "registry":"https://registry.npmjs.org/"
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "keywords": [
     "iptv",
