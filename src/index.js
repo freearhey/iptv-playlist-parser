@@ -9,9 +9,7 @@ Parser.parse = (content) => {
   const header = parseHeader(content)
 
   let playlist = {
-    tvg: {
-      url: header.attrs['x-tvg-url'] || ''
-    },
+    header,
     items: []
   }
 
@@ -27,7 +25,8 @@ Parser.parse = (content) => {
       group: {
         title: segment.inf['group-title'] || ''
       },
-      url: segment.url || ''
+      url: segment.url || '',
+      raw: getRaw(segment)
     }
 
     playlist.items.push(item)
@@ -41,7 +40,8 @@ function parseHeader(string) {
   const head = matches ? matches[0] : null
 
   let header = {
-    attrs: {}
+    attrs: {},
+    raw: ''
   }
 
   if(head) {
@@ -52,9 +52,26 @@ function parseHeader(string) {
       
       header.attrs[attrParts[0]] = attrParts[1].replace(/\"/g, '')
     }
+
+    header.raw = head
   }
 
   return header
+}
+
+function getRaw(segment) {
+  const duration = segment.inf.duration
+  const title = segment.inf.title
+  let info = segment.inf
+  delete info.duration
+  delete info.title
+  let attrs = []
+  for(const key in info) {
+    const value = info[key]
+    attrs.push(`${key}="${value}"`)
+  }
+
+  return `#EXTINF:${duration} ${attrs.join(' ')},${title}\n${segment.url}`
 }
 
 module.exports = Parser
