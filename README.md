@@ -34,8 +34,11 @@ Output:
 
 ```js
 {
-  tvg: {
-    url: 'http://example.com/epg.xml.gz'
+  header: {
+    attrs: {
+      'x-tvg-url': 'http://example.com/epg.xml.gz'
+    },
+    raw: '#EXTM3U x-tvg-url="http://example.com/epg.xml.gz"'
   },
   items: [
     { 
@@ -48,7 +51,8 @@ Output:
       group: {
         title: 'News'
       },
-      url: 'http://example.com/stream.m3u8'
+      url: 'http://example.com/stream.m3u8',
+      raw: '#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)\nhttp://example.com/stream.m3u8'
     }
   ]
 }
