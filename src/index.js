@@ -15,6 +15,8 @@ Parser.parse = (content) => {
   }
 
   for(let segment of result.segments) {
+    if(!segment || !segment.inf) continue
+
     const item = {
       name: segment.inf.title || '',
       tvg: {
@@ -66,13 +68,15 @@ function getRaw(segment) {
   let info = segment.inf
   delete info.duration
   delete info.title
-  let attrs = []
+  let attrs = [
+    duration
+  ]
   for(const key in info) {
     const value = info[key]
     attrs.push(`${decamelize(key, '-')}="${value}"`)
   }
 
-  return `#EXTINF:${duration} ${attrs.join(' ')},${title}\n${segment.url}`
+  return `#EXTINF:${attrs.join(' ')},${title}\n${segment.url}`
 }
 
 module.exports = Parser
