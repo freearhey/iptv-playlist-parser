@@ -48,3 +48,35 @@ it('parse playlist', () => {
     ]
   })
 })
+
+it('could parse playlist with comments', () => {
+  const playlist = `   
+#EXTM3U
+================morocco================================================================
+#EXTINF:-1,tamazight tv8
+http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8
+  `
+
+  expect(parser.parse(playlist)).toStrictEqual({
+    header: {
+      attrs: {},
+      raw: '#EXTM3U'
+    },
+    items: [
+      { 
+        name: 'tamazight tv8',
+        tvg: {
+          id: '',
+          name: '',
+          logo: '',
+          url: ''
+        },
+        group: {
+          title: ''
+        },
+        url: 'http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8',
+        raw: '#EXTINF:-1,tamazight tv8\nhttp://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8'
+      }
+    ]
+  })
+})
