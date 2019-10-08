@@ -1,4 +1,5 @@
 const M3U8FileParser = require('m3u8-file-parser')
+const decamelize = require('decamelize')
 
 const Parser = {}
 
@@ -17,13 +18,13 @@ Parser.parse = (content) => {
     const item = {
       name: segment.inf.title || '',
       tvg: {
-        id: segment.inf['tvg-id'] || segment.inf['tvg-ID'] || '',
-        name: segment.inf['tvg-name'] || '',
-        logo: segment.inf['tvg-logo'] || '',
-        url: segment.inf['tvg-url'] || ''
+        id: segment.inf.tvgId || '',
+        name: segment.inf.tvgName || '',
+        logo: segment.inf.tvgLogo || '',
+        url: segment.inf.tvgUrl || ''
       },
       group: {
-        title: segment.inf['group-title'] || ''
+        title: segment.inf.groupTitle || ''
       },
       url: segment.url || '',
       raw: getRaw(segment)
@@ -68,7 +69,7 @@ function getRaw(segment) {
   let attrs = []
   for(const key in info) {
     const value = info[key]
-    attrs.push(`${key}="${value}"`)
+    attrs.push(`${decamelize(key, '-')}="${value}"`)
   }
 
   return `#EXTINF:${duration} ${attrs.join(' ')},${title}\n${segment.url}`

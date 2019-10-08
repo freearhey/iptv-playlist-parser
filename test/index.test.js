@@ -29,7 +29,7 @@ it('parse playlist', () => {
           title: 'Music'
         },
         url: 'http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
-        raw: '#EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-logo="https://i.imgur.com/LcJZVV5.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" group-title="Music",Channel 1 (Tested)\nhttp://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8'
+        raw: '#EXTINF:-1 tvg-id="CH1" tvg-name="Ch 1" tvg-logo="https://i.imgur.com/LcJZVV5.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" group-title="Music",Channel 1 (Tested)\nhttp://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8'
       },
       { 
         name: 'Channel 2',
