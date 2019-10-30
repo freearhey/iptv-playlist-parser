@@ -22,6 +22,8 @@ Parser.parse = (content) => {
       tvg: {
         id: segment.inf.tvgId || '',
         name: segment.inf.tvgName || '',
+        language: segment.inf.tvgLanguage || '',
+        country: segment.inf.tvgCountry || '',
         logo: segment.inf.tvgLogo || '',
         url: segment.inf.tvgUrl || ''
       },
