@@ -26,7 +26,7 @@ Input:
 
 ```
 #EXTM3U x-tvg-url="http://example.com/epg.xml.gz"
-#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)
+#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-language="English" tvg-country="US" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)
 http://example.com/stream.m3u8
 ```
 
@@ -46,13 +46,15 @@ Output:
       tvg: {
         id: 'cnn.us',
         name: 'CNN',
+        language: 'English',
+        country: 'US',
         logo: 'http://example.com/logo.png'
       },
       group: {
         title: 'News'
       },
       url: 'http://example.com/stream.m3u8',
-      raw: '#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)\nhttp://example.com/stream.m3u8'
+      raw: '#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-language="English" tvg-country="US" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)\nhttp://example.com/stream.m3u8'
     }
   ]
 }
