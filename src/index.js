@@ -3,7 +3,7 @@ const decamelize = require('decamelize')
 
 const Parser = {}
 
-Parser.parse = (content) => {
+Parser.parse = content => {
   const parser = new M3U8FileParser()
   parser.read(content)
   const result = parser.getResult()
@@ -14,8 +14,8 @@ Parser.parse = (content) => {
     items: []
   }
 
-  for(let segment of result.segments) {
-    if(!segment || !segment.inf) continue
+  for (let segment of result.segments) {
+    if (!segment || !segment.inf) continue
 
     const item = {
       name: segment.inf.title || '',
@@ -49,12 +49,12 @@ function parseHeader(string) {
     raw: ''
   }
 
-  if(head) {
+  if (head) {
     const attrs = matches[1].split(' ').filter(p => p)
 
-    for(const attr of attrs) {
+    for (const attr of attrs) {
       const attrParts = attr.split('=')
-      
+
       header.attrs[attrParts[0]] = attrParts[1].replace(/\"/g, '')
     }
 
@@ -70,10 +70,8 @@ function getRaw(segment) {
   let info = segment.inf
   delete info.duration
   delete info.title
-  let attrs = [
-    duration
-  ]
-  for(const key in info) {
+  let attrs = [duration]
+  for (const key in info) {
     const value = info[key]
     attrs.push(`${decamelize(key, '-')}="${value}"`)
   }
