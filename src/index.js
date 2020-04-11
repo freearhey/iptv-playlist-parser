@@ -1,37 +1,42 @@
-const M3U8FileParser = require('m3u8-file-parser')
-const decamelize = require('decamelize')
-
 const Parser = {}
 
 Parser.parse = content => {
-  const parser = new M3U8FileParser()
-  parser.read(content)
-  const result = parser.getResult()
-  const header = parseHeader(content)
-
   let playlist = {
-    header,
+    header: {},
     items: []
   }
 
-  for (let segment of result.segments) {
-    if (!segment || !segment.inf) continue
+  let manifest = content
+    .split(/(?=#EXTINF)/)
+    .map(l => l.trim())
+    .filter(l => l)
 
+  const firstLine = manifest.shift()
+
+  if (!firstLine || !/#EXTM3U/.test(firstLine)) throw new Error('Playlist is not valid')
+
+  playlist.header = parseHeader(firstLine)
+
+  for (let line of manifest) {
     const item = {
-      name: segment.inf.title || '',
+      name: line.getName(),
       tvg: {
-        id: segment.inf.tvgId || '',
-        name: segment.inf.tvgName || '',
-        language: segment.inf.tvgLanguage || '',
-        country: segment.inf.tvgCountry || '',
-        logo: segment.inf.tvgLogo || '',
-        url: segment.inf.tvgUrl || ''
+        id: line.getAttribute('tvg-id'),
+        name: line.getAttribute('tvg-name'),
+        language: line.getAttribute('tvg-language'),
+        country: line.getAttribute('tvg-country'),
+        logo: line.getAttribute('tvg-logo'),
+        url: line.getAttribute('tvg-url')
       },
       group: {
-        title: segment.inf.groupTitle || ''
+        title: line.getAttribute('group-title')
       },
-      url: segment.url || '',
-      raw: getRaw(segment)
+      http: {
+        referrer: line.getVlcOption('http-referrer'),
+        'user-agent': line.getVlcOption('http-user-agent')
+      },
+      url: line.getURL(),
+      raw: line
     }
 
     playlist.items.push(item)
@@ -40,43 +45,51 @@ Parser.parse = content => {
   return playlist
 }
 
-function parseHeader(string) {
-  const matches = string.match(/#EXTM3U(.*)/)
-  const head = matches ? matches[0] : null
+function parseHeader(line) {
+  const supportedAttrs = ['x-tvg-url']
 
-  let header = {
-    attrs: {},
-    raw: ''
-  }
-
-  if (head) {
-    const attrs = matches[1].split(' ').filter(p => p)
-
-    for (const attr of attrs) {
-      const attrParts = attr.split('=')
-
-      header.attrs[attrParts[0]] = attrParts[1].replace(/\"/g, '')
+  let attrs = {}
+  for (let attrName of supportedAttrs) {
+    const tvgUrl = line.getAttribute(attrName)
+    if (tvgUrl) {
+      attrs[attrName] = tvgUrl
     }
-
-    header.raw = head
   }
 
-  return header
+  return {
+    attrs,
+    raw: line
+  }
 }
 
-function getRaw(segment) {
-  const duration = segment.inf.duration
-  const title = segment.inf.title
-  let info = segment.inf
-  delete info.duration
-  delete info.title
-  let attrs = [duration]
-  for (const key in info) {
-    const value = info[key]
-    attrs.push(`${decamelize(key, '-')}="${value}"`)
-  }
+String.prototype.getAttribute = function (name) {
+  let regex = new RegExp(name + '="(.*?)"', 'gi')
+  let match = regex.exec(this)
 
-  return `#EXTINF:${attrs.join(' ')},${title}\n${segment.url}`
+  return match && match[1] ? match[1] : ''
+}
+
+String.prototype.getName = function () {
+  let regex = new RegExp(',(.*?)\\n', 'gi')
+  let match = regex.exec(this)
+
+  return match && match[1] ? match[1] : ''
+}
+
+String.prototype.getVlcOption = function (name) {
+  let regex = new RegExp('#EXTVLCOPT:' + name + '=(.*?)\\n', 'gi')
+  let match = regex.exec(this)
+
+  return match && match[1] ? match[1] : ''
+}
+
+String.prototype.getURL = function () {
+  const last = this.split('\n')
+    .map(l => l.trim())
+    .filter(l => l)
+    .pop()
+
+  return last || ''
 }
 
 module.exports = Parser
