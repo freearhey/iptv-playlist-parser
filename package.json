@@ -33,8 +33,5 @@
     "@babel/preset-env": "^7.6.2",
     "jest": "^24.9.0"
   },
-  "dependencies": {
-    "decamelize": "^3.2.0",
-    "m3u8-file-parser": "^0.2.2"
-  }
+  "dependencies": {}
 }
