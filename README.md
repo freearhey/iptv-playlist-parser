@@ -27,6 +27,8 @@ Input:
 ```
 #EXTM3U x-tvg-url="http://example.com/epg.xml.gz"
 #EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-language="English" tvg-country="US" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)
+#EXTVLCOPT:http-referrer=http://example.com/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)
 http://example.com/stream.m3u8
 ```
 
@@ -54,8 +56,12 @@ Output:
       group: {
         title: 'News'
       },
+      http: {
+        referrer: 'http://example.com/',
+        user-agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)'
+      },
       url: 'http://example.com/stream.m3u8',
-      raw: '#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-language="English" tvg-country="US" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)\nhttp://example.com/stream.m3u8'
+      raw: '#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-language="English" tvg-country="US" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)\n#EXTVLCOPT:http-referrer=http://example.com/\n#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)\nhttp://example.com/stream.m3u8'
     }
   ]
 }
