@@ -6,10 +6,7 @@ Parser.parse = content => {
     items: []
   }
 
-  let manifest = content
-    .split(/(?=#EXTINF)/)
-    .map(l => l.trim())
-    .filter(l => l)
+  let manifest = content.split(/(?=#EXTINF)/).map(l => l.trim())
 
   const firstLine = manifest.shift()
 
@@ -84,10 +81,13 @@ String.prototype.getVlcOption = function (name) {
 }
 
 String.prototype.getURL = function () {
+  const supportedTags = ['#EXTVLCOPT', '#EXTINF']
   const last = this.split('\n')
     .map(l => l.trim())
-    .filter(l => l)
-    .pop()
+    .filter(l => {
+      return supportedTags.every(t => !l.startsWith(t))
+    })
+    .shift()
 
   return last || ''
 }
