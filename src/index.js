@@ -82,6 +82,7 @@ String.prototype.getVlcOption = function (name) {
 String.prototype.getURL = function () {
   const supportedTags = ['#EXTVLCOPT', '#EXTINF']
   const last = this.split('\n')
+    .filter((l) => l)
     .map((l) => l.trim())
     .filter((l) => {
       return supportedTags.every((t) => !l.startsWith(t))
