@@ -12,7 +12,11 @@ stream/chunklist.m3u8
 
 =========================sudan===================================
 #EXTM3U
+#EXTINF:1,=>(★ TURKİYE ★)<=
 
+http://wodpro24.tr4545.in:8080/expred/peru8k.mp4
+#EXTINF:1,TRT 1 HD
+https://trtcanlitv-lh.akamaihd.net/i/TRT1HD_1@181842/index_1550_av-p.m3u8?sd=10&rebase=on
   `
 
   expect(parser.parse(playlist)).toStrictEqual({
@@ -65,6 +69,47 @@ stream/chunklist.m3u8
         },
         url: 'stream/chunklist.m3u8',
         raw: `#EXTINF:16 tvg-id="CH2",Channel 2\nstream/chunklist.m3u8\n\n=========================sudan===================================\n#EXTM3U`,
+      },
+      {
+        name: '=>(★ TURKİYE ★)<=',
+        tvg: {
+          id: '',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: '',
+        },
+        group: {
+          title: '',
+        },
+        http: {
+          referrer: '',
+          'user-agent': '',
+        },
+        url: 'http://wodpro24.tr4545.in:8080/expred/peru8k.mp4',
+        raw: `#EXTINF:1,=>(★ TURKİYE ★)<=\n\nhttp://wodpro24.tr4545.in:8080/expred/peru8k.mp4`,
+      },
+      {
+        name: 'TRT 1 HD',
+        tvg: {
+          id: '',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: '',
+        },
+        group: {
+          title: '',
+        },
+        http: {
+          referrer: '',
+          'user-agent': '',
+        },
+        url:
+          'https://trtcanlitv-lh.akamaihd.net/i/TRT1HD_1@181842/index_1550_av-p.m3u8?sd=10&rebase=on',
+        raw: `#EXTINF:1,TRT 1 HD\nhttps://trtcanlitv-lh.akamaihd.net/i/TRT1HD_1@181842/index_1550_av-p.m3u8?sd=10&rebase=on`,
       },
     ],
   })
