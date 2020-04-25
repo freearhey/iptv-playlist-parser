@@ -1,12 +1,12 @@
 const Parser = {}
 
-Parser.parse = content => {
+Parser.parse = (content) => {
   let playlist = {
     header: {},
-    items: []
+    items: [],
   }
 
-  let manifest = content.split(/(?=#EXTINF)/).map(l => l.trim())
+  let manifest = content.split(/(?=#EXTINF)/).map((l) => l.trim())
 
   const firstLine = manifest.shift()
 
@@ -23,17 +23,17 @@ Parser.parse = content => {
         language: line.getAttribute('tvg-language'),
         country: line.getAttribute('tvg-country'),
         logo: line.getAttribute('tvg-logo'),
-        url: line.getAttribute('tvg-url')
+        url: line.getAttribute('tvg-url'),
       },
       group: {
-        title: line.getAttribute('group-title')
+        title: line.getAttribute('group-title'),
       },
       http: {
         referrer: line.getVlcOption('http-referrer'),
-        'user-agent': line.getVlcOption('http-user-agent')
+        'user-agent': line.getVlcOption('http-user-agent'),
       },
       url: line.getURL(),
-      raw: line
+      raw: line,
     }
 
     playlist.items.push(item)
@@ -55,7 +55,7 @@ function parseHeader(line) {
 
   return {
     attrs,
-    raw: line
+    raw: line,
   }
 }
 
@@ -67,10 +67,9 @@ String.prototype.getAttribute = function (name) {
 }
 
 String.prototype.getName = function () {
-  let regex = new RegExp(',(.*?)\\n', 'gi')
-  let match = regex.exec(this)
+  let name = this.split('\n').shift().split(',').pop()
 
-  return match && match[1] ? match[1] : ''
+  return name || ''
 }
 
 String.prototype.getVlcOption = function (name) {
@@ -83,9 +82,9 @@ String.prototype.getVlcOption = function (name) {
 String.prototype.getURL = function () {
   const supportedTags = ['#EXTVLCOPT', '#EXTINF']
   const last = this.split('\n')
-    .map(l => l.trim())
-    .filter(l => {
-      return supportedTags.every(t => !l.startsWith(t))
+    .map((l) => l.trim())
+    .filter((l) => {
+      return supportedTags.every((t) => !l.startsWith(t))
     })
     .shift()
 
