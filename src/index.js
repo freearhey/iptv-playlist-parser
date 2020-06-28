@@ -26,7 +26,7 @@ Parser.parse = (content) => {
         url: line.getAttribute('tvg-url'),
       },
       group: {
-        title: line.getAttribute('group-title'),
+        title: line.getAttribute('group-title') || line.getGroup(),
       },
       http: {
         referrer: line.getVlcOption('http-referrer'),
@@ -79,8 +79,17 @@ String.prototype.getVlcOption = function (name) {
   return match && match[1] ? match[1] : ''
 }
 
+String.prototype.getGroup = function () {
+  const groupTag = '#EXTGRP'
+  const groupLine = this.split('\n')
+  .filter((l) => l.startsWith(groupTag))
+  .shift()
+
+  return groupLine ? groupLine.split(':')[1] : ''
+}
+
 String.prototype.getURL = function () {
-  const supportedTags = ['#EXTVLCOPT', '#EXTINF']
+  const supportedTags = ['#EXTVLCOPT', '#EXTINF', '#EXTGRP']
   const last = this.split('\n')
     .filter((l) => l)
     .map((l) => l.trim())
