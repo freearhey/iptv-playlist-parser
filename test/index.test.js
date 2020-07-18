@@ -158,7 +158,7 @@ http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8
 it('could parse playlist with #EXTGRP tag', () => {
   const playlist = `
 #EXTM3U
-#EXTINF:0 tvg-name="TestChannel",Test Channel
+#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel
 #EXTGRP:News
 http://test.channel.com/iptv/secret/1/index.m3u8`;
 
@@ -188,7 +188,7 @@ http://test.channel.com/iptv/secret/1/index.m3u8`;
           },
           url: 'http://test.channel.com/iptv/secret/1/index.m3u8',
           raw:
-            '#EXTINF:0 tvg-name="TestChannel",Test Channel\n#EXTGRP:News\nhttp://test.channel.com/iptv/secret/1/index.m3u8'
+            '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\nhttp://test.channel.com/iptv/secret/1/index.m3u8'
         }
       ]
     })
