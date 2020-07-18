@@ -26,7 +26,7 @@ Parser.parse = (content) => {
         url: line.getAttribute('tvg-url'),
       },
       group: {
-        title: line.getAttribute('group-title') || line.getGroup(),
+        title: line.getGroup() || line.getAttribute('group-title'),
       },
       http: {
         referrer: line.getVlcOption('http-referrer'),
