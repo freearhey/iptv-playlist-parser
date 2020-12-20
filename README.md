@@ -1,24 +1,24 @@
-# iptv-playlist-parser
+# iptv-playlist-parser [![Build Status](https://travis-ci.org/freearhey/iptv-playlist-parser.svg?branch=master)](https://travis-ci.org/freearhey/iptv-playlist-parser)
 
 It parses IPTV playlist and converts it to a regular JavaScript object.
 
 ## Installation
 
-  ```sh
-  npm install iptv-playlist-parser
-  ```
+```sh
+npm install iptv-playlist-parser
+```
 
 ## Usage
 
-  ```js
-  import fs from 'fs'
-  import parser from 'iptv-playlist-parser'
+```js
+import fs from 'fs'
+import parser from 'iptv-playlist-parser'
 
-  const playlist = fs.readFileSync('./playlist.m3u', { encoding: 'utf-8'})
-  const result = parser.parse(playlist)
+const playlist = fs.readFileSync('./playlist.m3u', { encoding: 'utf-8' })
+const result = parser.parse(playlist)
 
-  console.log(result)
-  ```
+console.log(result)
+```
 
 ## Example
 
@@ -44,7 +44,7 @@ Output:
     raw: '#EXTM3U x-tvg-url="http://example.com/epg.xml.gz"'
   },
   items: [
-    { 
+    {
       name: 'CNN (US)',
       tvg: {
         id: 'cnn.us',
