@@ -17,6 +17,7 @@ stream/chunklist.m3u8
 http://wodpro24.tr4545.in:8080/expred/peru8k.mp4
 #EXTINF:1,TRT 1 HD
 https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(ow4)m(U1zbeMZOcvuVp_PjPC5VeA)n(a(-xL_Aw)s(yeg)'a(vuk2sg)s(3Rc)))s(s(2h8)b(OVsX9brZ0psZeMaQYt9O46THOxFsPHFB6R_YrLO_lAYLehFKlBcB3utUOhZjyWY7C52ngNY4Ow9Ook29TA)'s(gRY)b(iE9B80a6sOKUZn0UnLJQU_bKwqIDP29GWBxvJz1bQ1ihEmrOuDaUGTinW0l8unt4U9_v4jCwiAC2T6TOa8pgVRIAfsnYG9Y7VoI5EmwQ)'s(A4Q)b(ayZ0dwLn))m(0))/index.m3u8
+#EXTINF: -1, name\r\nhttp://100.101.102.103:1000/index.m3u8\r\n
   `
 
   expect(parser.parse(playlist)).toStrictEqual({
@@ -110,6 +111,26 @@ https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(
         url:
           "https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(ow4)m(U1zbeMZOcvuVp_PjPC5VeA)n(a(-xL_Aw)s(yeg)'a(vuk2sg)s(3Rc)))s(s(2h8)b(OVsX9brZ0psZeMaQYt9O46THOxFsPHFB6R_YrLO_lAYLehFKlBcB3utUOhZjyWY7C52ngNY4Ow9Ook29TA)'s(gRY)b(iE9B80a6sOKUZn0UnLJQU_bKwqIDP29GWBxvJz1bQ1ihEmrOuDaUGTinW0l8unt4U9_v4jCwiAC2T6TOa8pgVRIAfsnYG9Y7VoI5EmwQ)'s(A4Q)b(ayZ0dwLn))m(0))/index.m3u8",
         raw: `#EXTINF:1,TRT 1 HD\nhttps://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(ow4)m(U1zbeMZOcvuVp_PjPC5VeA)n(a(-xL_Aw)s(yeg)'a(vuk2sg)s(3Rc)))s(s(2h8)b(OVsX9brZ0psZeMaQYt9O46THOxFsPHFB6R_YrLO_lAYLehFKlBcB3utUOhZjyWY7C52ngNY4Ow9Ook29TA)'s(gRY)b(iE9B80a6sOKUZn0UnLJQU_bKwqIDP29GWBxvJz1bQ1ihEmrOuDaUGTinW0l8unt4U9_v4jCwiAC2T6TOa8pgVRIAfsnYG9Y7VoI5EmwQ)'s(A4Q)b(ayZ0dwLn))m(0))/index.m3u8`
+      },
+      {
+        name: ' name',
+        tvg: {
+          id: '',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: ''
+        },
+        group: {
+          title: ''
+        },
+        http: {
+          referrer: '',
+          'user-agent': ''
+        },
+        url: 'http://100.101.102.103:1000/index.m3u8',
+        raw: `#EXTINF: -1, name\r\nhttp://100.101.102.103:1000/index.m3u8`
       }
     ]
   })
@@ -160,36 +181,35 @@ it('could parse playlist with #EXTGRP tag', () => {
 #EXTM3U
 #EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel
 #EXTGRP:News
-http://test.channel.com/iptv/secret/1/index.m3u8`;
+http://test.channel.com/iptv/secret/1/index.m3u8`
 
-    expect(parser.parse(playlist)).toStrictEqual({
-      header: {
-        attrs: {},
+  expect(parser.parse(playlist)).toStrictEqual({
+    header: {
+      attrs: {},
+      raw: '#EXTM3U'
+    },
+    items: [
+      {
+        name: 'Test Channel',
+        tvg: {
+          id: '',
+          name: 'TestChannel',
+          language: '',
+          country: '',
+          logo: '',
+          url: ''
+        },
+        group: {
+          title: 'News'
+        },
+        http: {
+          referrer: '',
+          'user-agent': ''
+        },
+        url: 'http://test.channel.com/iptv/secret/1/index.m3u8',
         raw:
-          '#EXTM3U'
-      },
-      items: [
-        {
-          name: 'Test Channel',
-          tvg: {
-            id: '',
-            name: 'TestChannel',
-            language: '',
-            country: '',
-            logo: '',
-            url: ''
-          },
-          group: {
-            title: 'News'
-          },
-          http: {
-            referrer: '',
-            'user-agent': ''
-          },
-          url: 'http://test.channel.com/iptv/secret/1/index.m3u8',
-          raw:
-            '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\nhttp://test.channel.com/iptv/secret/1/index.m3u8'
-        }
-      ]
-    })
+          '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\nhttp://test.channel.com/iptv/secret/1/index.m3u8'
+      }
+    ]
+  })
 })
