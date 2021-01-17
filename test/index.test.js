@@ -4,6 +4,7 @@ it('parse playlist', () => {
   const playlist = `
     #EXTM3U x-tvg-url="http://195.154.221.171/epg/guidealbania.xml.gz"
     #EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-language="English" tvg-country="US" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" group-title="Music",Channel 1 (Tested)
+    #EXTGRP:Только Android
     #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/
     #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36
     http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8
@@ -40,7 +41,7 @@ https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(
           url: 'http://195.154.221.171/epg/guide.xml.gz'
         },
         group: {
-          title: 'Music'
+          title: 'Только Android'
         },
         http: {
           referrer: 'http://player.livesports.pw/la2/',
@@ -49,7 +50,7 @@ https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(
         },
         url: 'http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
         raw:
-          '#EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-language="English" tvg-country="US" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" group-title="Music",Channel 1 (Tested)\n    #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/\n    #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\n    http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8'
+          '#EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-language="English" tvg-country="US" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" group-title="Music",Channel 1 (Tested)\n    #EXTGRP:Только Android\n    #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/\n    #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\n    http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8'
       },
       {
         name: 'Channel 2',
@@ -176,11 +177,12 @@ http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8
   })
 })
 
-it('could parse playlist with #EXTGRP tag', () => {
+it('could parse playlist with #EXTGRP and #EXTVLCOPT tag', () => {
   const playlist = `
 #EXTM3U
 #EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel
 #EXTGRP:News
+#EXTVLCOPT:http-user-agent="Dalvik/2.1.0 (Linux; U; Android 6.0.1;)"
 http://test.channel.com/iptv/secret/1/index.m3u8`
 
   expect(parser.parse(playlist)).toStrictEqual({
@@ -204,11 +206,11 @@ http://test.channel.com/iptv/secret/1/index.m3u8`
         },
         http: {
           referrer: '',
-          'user-agent': ''
+          'user-agent': 'Dalvik/2.1.0 (Linux; U; Android 6.0.1;)'
         },
         url: 'http://test.channel.com/iptv/secret/1/index.m3u8',
         raw:
-          '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\nhttp://test.channel.com/iptv/secret/1/index.m3u8'
+          '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\n#EXTVLCOPT:http-user-agent="Dalvik/2.1.0 (Linux; U; Android 6.0.1;)"\nhttp://test.channel.com/iptv/secret/1/index.m3u8'
       }
     ]
   })
