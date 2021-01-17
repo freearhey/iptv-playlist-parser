@@ -79,7 +79,7 @@ String.prototype.getVlcOption = function (name) {
   let regex = new RegExp('#EXTVLCOPT:' + name + '=(.*)', 'gi')
   let match = regex.exec(this)
 
-  return match && match[1] ? match[1].replaceAll('"', '') : ''
+  return match && match[1] && typeof match[1] === 'string' ? match[1].replaceAll('"', '') : ''
 }
 
 String.prototype.getGroup = function () {
