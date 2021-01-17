@@ -76,19 +76,17 @@ String.prototype.getName = function () {
 }
 
 String.prototype.getVlcOption = function (name) {
-  let regex = new RegExp('#EXTVLCOPT:' + name + '=(.*?)\\n', 'gi')
+  let regex = new RegExp('#EXTVLCOPT:' + name + '=(.*)', 'gi')
   let match = regex.exec(this)
 
-  return match && match[1] ? match[1] : ''
+  return match && match[1] ? match[1].replaceAll('"', '') : ''
 }
 
 String.prototype.getGroup = function () {
-  const groupTag = '#EXTGRP'
-  const groupLine = this.split('\n')
-    .filter(l => l.startsWith(groupTag))
-    .shift()
+  let regex = new RegExp('#EXTGRP:(.*)', 'gi')
+  let match = regex.exec(this)
 
-  return groupLine ? groupLine.split(':')[1] : ''
+  return match && match[1] ? match[1] : ''
 }
 
 String.prototype.getURL = function () {
