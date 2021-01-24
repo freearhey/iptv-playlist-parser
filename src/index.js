@@ -23,7 +23,8 @@ Parser.parse = content => {
         language: line.getAttribute('tvg-language'),
         country: line.getAttribute('tvg-country'),
         logo: line.getAttribute('tvg-logo'),
-        url: line.getAttribute('tvg-url')
+        url: line.getAttribute('tvg-url'),
+        rec: line.getAttribute('tvg-rec')
       },
       group: {
         title: line.getGroup() || line.getAttribute('group-title')
