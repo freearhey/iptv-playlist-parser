@@ -17,7 +17,8 @@ export function parse(
       language: string
       country: string
       url: string
-      logo: string
+      logo: string,
+      rec: string
     }
     group: {
       title: string
