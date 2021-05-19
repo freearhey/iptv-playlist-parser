@@ -34,7 +34,13 @@ Parser.parse = content => {
         'user-agent': line.getVlcOption('http-user-agent')
       },
       url: line.getURL(),
-      raw: line
+      raw: line,
+      catchup: {
+        type: line.getAttribute('catchup'),
+        days: line.getAttribute('catchup-days'),
+        source: line.getAttribute('catchup-source')
+      },
+      timeshift: line.getAttribute('timeshift')
     }
 
     playlist.items.push(item)
