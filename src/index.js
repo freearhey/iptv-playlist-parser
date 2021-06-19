@@ -30,8 +30,8 @@ Parser.parse = content => {
         title: line.getGroup() || line.getAttribute('group-title')
       },
       http: {
-        referrer: line.getVlcOption('http-referrer'),
-        'user-agent': line.getVlcOption('http-user-agent')
+        referrer: line.getVlcOption('http-referrer') || line.getKodiOption('Referer'),
+        'user-agent': line.getVlcOption('http-user-agent') || line.getKodiOption('User-Agent')
       },
       url: line.getURL(),
       raw: line,
@@ -66,6 +66,18 @@ function parseHeader(line) {
   }
 }
 
+function getFullUrl(url) {
+  const supportedTags = ['#EXTVLCOPT', '#EXTINF', '#EXTGRP']
+  const last = url.split('\n')
+    .filter(l => l)
+    .map(l => l.trim())
+    .filter(l => {
+      return supportedTags.every(t => !l.startsWith(t))
+    })
+    .shift()
+    return last || '';
+}
+
 String.prototype.getAttribute = function (name) {
   let regex = new RegExp(name + '="(.*?)"', 'gi')
   let match = regex.exec(this)
@@ -97,16 +109,15 @@ String.prototype.getGroup = function () {
 }
 
 String.prototype.getURL = function () {
-  const supportedTags = ['#EXTVLCOPT', '#EXTINF', '#EXTGRP']
-  const last = this.split('\n')
-    .filter(l => l)
-    .map(l => l.trim())
-    .filter(l => {
-      return supportedTags.every(t => !l.startsWith(t))
-    })
-    .shift()
-
+  const last = getFullUrl(this).split('|')[0]
   return last || ''
+}
+
+String.prototype.getKodiOption = function (name) {
+  const url = getFullUrl(this)
+  const regex = new RegExp(name + '=(\\w[^&]*)', 'g')
+  const match = regex.exec(url)
+  return match && match[1] ? match[1] : ''
 }
 
 module.exports = Parser
