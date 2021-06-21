@@ -1,4 +1,4 @@
-# iptv-playlist-parser [![Build Status](https://travis-ci.org/freearhey/iptv-playlist-parser.svg?branch=master)](https://travis-ci.org/freearhey/iptv-playlist-parser)
+# iptv-playlist-parser [![Build Status](https://travis-ci.com/freearhey/iptv-playlist-parser.svg?branch=master)](https://travis-ci.com/freearhey/iptv-playlist-parser)
 
 It parses IPTV playlist and converts it to a regular JavaScript object.
 
