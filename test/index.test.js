@@ -264,3 +264,79 @@ http://test.channel.com/iptv/secret/1/index.m3u8`
     ]
   })
 })
+
+
+
+it('could parse playlist with user agent and referer in the url string', () => {
+  const playlist = `
+#EXTM3U
+#EXTINF:17 tvg-id="SportChannel",Sport channel
+http://192.54.104.122:8080/d/abcdef/video.mp4|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko&Referer=http://180upload.abc/embed-uaqmgcckhpcl.html
+#EXTINF:555 tvg-id="News99",News channel
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36
+http://my-news-stream:8999/d/letsplay/video.mp4|Referer=http://test.abc/blank.html
+  `
+
+  expect(parser.parse(playlist)).toStrictEqual({
+    header: {
+      attrs: {},
+      raw: '#EXTM3U'
+    },
+    items: [
+      {
+        name: 'Sport channel',
+        tvg: {
+          id: 'SportChannel',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: '',
+          rec: ''
+        },
+        group: {
+          title: ''
+        },
+        http: {
+          referrer: 'http://180upload.abc/embed-uaqmgcckhpcl.html',
+          'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko'
+        },
+        url: 'http://192.54.104.122:8080/d/abcdef/video.mp4',
+        raw: `#EXTINF:17 tvg-id="SportChannel",Sport channel\nhttp://192.54.104.122:8080/d/abcdef/video.mp4|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko&Referer=http://180upload.abc/embed-uaqmgcckhpcl.html`,
+        timeshift: '',
+          catchup: {
+            type: '',
+            source: '',
+            days: ''
+          }
+      },
+      {
+        name: 'News channel',
+        tvg: {
+          id: 'News99',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: '',
+          rec: ''
+        },
+        group: {
+          title: ''
+        },
+        http: {
+          referrer: 'http://test.abc/blank.html',
+          'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36'
+        },
+        url: 'http://my-news-stream:8999/d/letsplay/video.mp4',
+        raw: `#EXTINF:555 tvg-id="News99",News channel\n#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\nhttp://my-news-stream:8999/d/letsplay/video.mp4|Referer=http://test.abc/blank.html`,
+        timeshift: '',
+          catchup: {
+            type: '',
+            source: '',
+            days: ''
+          }
+      }
+    ]
+  })
+})
