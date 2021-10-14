@@ -265,7 +265,48 @@ http://test.channel.com/iptv/secret/1/index.m3u8`
   })
 })
 
-
+it('could parse playlist with user agent in attribute', () => {
+      const playlist = `
+#EXTM3U
+#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",Agromais
+https://agromais/playlist.m3u8
+  `
+      expect(parser.parse(playlist)).toStrictEqual({
+        header: {
+          attrs: {},
+          raw: '#EXTM3U'
+        },
+        items: [
+          {
+            name: 'Agromais',
+            tvg: {
+              id: 'Agromais.br',
+              name: '',
+              language: '',
+              country: '',
+              logo: '',
+              url: '',
+              rec: ''
+            },
+            group: {
+              title: ''
+            },
+            http: {
+              referrer: '',
+              'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0'
+            },
+            url: 'https://agromais/playlist.m3u8',
+            raw: `#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",Agromais\nhttps://agromais/playlist.m3u8`,
+            timeshift: '',
+            catchup: {
+              type: '',
+              source: '',
+              days: ''
+            }
+          }
+        ]
+      })
+    })
 
 it('could parse playlist with user agent and referer in the url string', () => {
   const playlist = `

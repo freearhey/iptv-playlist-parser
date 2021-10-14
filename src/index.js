@@ -31,7 +31,7 @@ Parser.parse = content => {
       },
       http: {
         referrer: line.getVlcOption('http-referrer') || line.getKodiOption('Referer'),
-        'user-agent': line.getVlcOption('http-user-agent') || line.getKodiOption('User-Agent')
+        'user-agent': line.getVlcOption('http-user-agent') || line.getKodiOption('User-Agent') || line.getAttribute('user-agent')
       },
       url: line.getURL(),
       raw: line,
