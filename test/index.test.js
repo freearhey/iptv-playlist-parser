@@ -36,8 +36,7 @@ https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(
           name: 'Ch 1',
           language: 'English',
           country: 'US',
-          logo:
-            'http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png',
+          logo: 'http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png',
           url: 'http://195.154.221.171/epg/guide.xml.gz',
           rec: '3'
         },
@@ -50,8 +49,7 @@ https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36'
         },
         url: 'http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
-        raw:
-          '#EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-language="English" tvg-country="US" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-rec="3" group-title="Music",Channel 1 (Tested)\n    #EXTGRP:Только Android\n    #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/\n    #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\n    http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
+        raw: '#EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-language="English" tvg-country="US" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-rec="3" group-title="Music",Channel 1 (Tested)\n    #EXTGRP:Только Android\n    #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/\n    #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\n    http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
         timeshift: '',
         catchup: {
           type: '',
@@ -131,8 +129,7 @@ https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(
           referrer: '',
           'user-agent': ''
         },
-        url:
-          "https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(ow4)m(U1zbeMZOcvuVp_PjPC5VeA)n(a(-xL_Aw)s(yeg)'a(vuk2sg)s(3Rc)))s(s(2h8)b(OVsX9brZ0psZeMaQYt9O46THOxFsPHFB6R_YrLO_lAYLehFKlBcB3utUOhZjyWY7C52ngNY4Ow9Ook29TA)'s(gRY)b(iE9B80a6sOKUZn0UnLJQU_bKwqIDP29GWBxvJz1bQ1ihEmrOuDaUGTinW0l8unt4U9_v4jCwiAC2T6TOa8pgVRIAfsnYG9Y7VoI5EmwQ)'s(A4Q)b(ayZ0dwLn))m(0))/index.m3u8",
+        url: "https://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(ow4)m(U1zbeMZOcvuVp_PjPC5VeA)n(a(-xL_Aw)s(yeg)'a(vuk2sg)s(3Rc)))s(s(2h8)b(OVsX9brZ0psZeMaQYt9O46THOxFsPHFB6R_YrLO_lAYLehFKlBcB3utUOhZjyWY7C52ngNY4Ow9Ook29TA)'s(gRY)b(iE9B80a6sOKUZn0UnLJQU_bKwqIDP29GWBxvJz1bQ1ihEmrOuDaUGTinW0l8unt4U9_v4jCwiAC2T6TOa8pgVRIAfsnYG9Y7VoI5EmwQ)'s(A4Q)b(ayZ0dwLn))m(0))/index.m3u8",
         raw: `#EXTINF:1 timeshift="3" catchup="shift" catchup-days="3" catchup-source="https://m3u-server/hls-apple-s4-c494-abcdef.m3u8?utc=325234234&lutc=3123125324",TRT 1 HD\nhttps://video-rvd-lmg.rnp.br/live/ocp(t(FfZfeFx3QG4)r(TOqkzw)a(ut273w)p(d(lCo)k(ow4)m(U1zbeMZOcvuVp_PjPC5VeA)n(a(-xL_Aw)s(yeg)'a(vuk2sg)s(3Rc)))s(s(2h8)b(OVsX9brZ0psZeMaQYt9O46THOxFsPHFB6R_YrLO_lAYLehFKlBcB3utUOhZjyWY7C52ngNY4Ow9Ook29TA)'s(gRY)b(iE9B80a6sOKUZn0UnLJQU_bKwqIDP29GWBxvJz1bQ1ihEmrOuDaUGTinW0l8unt4U9_v4jCwiAC2T6TOa8pgVRIAfsnYG9Y7VoI5EmwQ)'s(A4Q)b(ayZ0dwLn))m(0))/index.m3u8`,
         timeshift: '3',
         catchup: {
@@ -183,8 +180,7 @@ http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8
   expect(parser.parse(playlist)).toStrictEqual({
     header: {
       attrs: {},
-      raw:
-        '#EXTM3U\n================morocco================================================================'
+      raw: '#EXTM3U\n================morocco================================================================'
     },
     items: [
       {
@@ -206,8 +202,7 @@ http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8
           'user-agent': ''
         },
         url: 'http://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8',
-        raw:
-          '#EXTINF:-1,tamazight tv8\nhttp://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8',
+        raw: '#EXTINF:-1,tamazight tv8\nhttp://cdn-hls.globecast.tv/live/ramdisk/tamazight_tv8_snrt/hls_snrt/index.m3u8',
         timeshift: '',
         catchup: {
           type: '',
@@ -252,8 +247,7 @@ http://test.channel.com/iptv/secret/1/index.m3u8`
           'user-agent': 'Dalvik/2.1.0 (Linux; U; Android 6.0.1;)'
         },
         url: 'http://test.channel.com/iptv/secret/1/index.m3u8',
-        raw:
-          '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\n#EXTVLCOPT:http-user-agent="Dalvik/2.1.0 (Linux; U; Android 6.0.1;)"\nhttp://test.channel.com/iptv/secret/1/index.m3u8',
+        raw: '#EXTINF:0 tvg-name="TestChannel" group-title="Entertainment",Test Channel\n#EXTGRP:News\n#EXTVLCOPT:http-user-agent="Dalvik/2.1.0 (Linux; U; Android 6.0.1;)"\nhttp://test.channel.com/iptv/secret/1/index.m3u8',
         timeshift: '',
         catchup: {
           type: '',
@@ -266,47 +260,48 @@ http://test.channel.com/iptv/secret/1/index.m3u8`
 })
 
 it('could parse playlist with user agent in attribute', () => {
-      const playlist = `
+  const playlist = `
 #EXTM3U
-#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",Agromais
+#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" group-title="Entertainment",Agromais
 https://agromais/playlist.m3u8
   `
-      expect(parser.parse(playlist)).toStrictEqual({
-        header: {
-          attrs: {},
-          raw: '#EXTM3U'
+  expect(parser.parse(playlist)).toStrictEqual({
+    header: {
+      attrs: {},
+      raw: '#EXTM3U'
+    },
+    items: [
+      {
+        name: 'Agromais',
+        tvg: {
+          id: 'Agromais.br',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: '',
+          rec: ''
         },
-        items: [
-          {
-            name: 'Agromais',
-            tvg: {
-              id: 'Agromais.br',
-              name: '',
-              language: '',
-              country: '',
-              logo: '',
-              url: '',
-              rec: ''
-            },
-            group: {
-              title: ''
-            },
-            http: {
-              referrer: '',
-              'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0'
-            },
-            url: 'https://agromais/playlist.m3u8',
-            raw: `#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",Agromais\nhttps://agromais/playlist.m3u8`,
-            timeshift: '',
-            catchup: {
-              type: '',
-              source: '',
-              days: ''
-            }
-          }
-        ]
-      })
-    })
+        group: {
+          title: 'Entertainment'
+        },
+        http: {
+          referrer: '',
+          'user-agent':
+            'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+        },
+        url: 'https://agromais/playlist.m3u8',
+        raw: `#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" group-title="Entertainment",Agromais\nhttps://agromais/playlist.m3u8`,
+        timeshift: '',
+        catchup: {
+          type: '',
+          source: '',
+          days: ''
+        }
+      }
+    ]
+  })
+})
 
 it('could parse playlist with user agent and referer in the url string', () => {
   const playlist = `
@@ -345,11 +340,11 @@ http://my-news-stream:8999/d/letsplay/video.mp4|Referer=http://test.abc/blank.ht
         url: 'http://192.54.104.122:8080/d/abcdef/video.mp4',
         raw: `#EXTINF:17 tvg-id="SportChannel",Sport channel\nhttp://192.54.104.122:8080/d/abcdef/video.mp4|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko&Referer=http://180upload.abc/embed-uaqmgcckhpcl.html`,
         timeshift: '',
-          catchup: {
-            type: '',
-            source: '',
-            days: ''
-          }
+        catchup: {
+          type: '',
+          source: '',
+          days: ''
+        }
       },
       {
         name: 'News channel',
@@ -367,16 +362,17 @@ http://my-news-stream:8999/d/letsplay/video.mp4|Referer=http://test.abc/blank.ht
         },
         http: {
           referrer: 'http://test.abc/blank.html',
-          'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36'
+          'user-agent':
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36'
         },
         url: 'http://my-news-stream:8999/d/letsplay/video.mp4',
         raw: `#EXTINF:555 tvg-id="News99",News channel\n#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\nhttp://my-news-stream:8999/d/letsplay/video.mp4|Referer=http://test.abc/blank.html`,
         timeshift: '',
-          catchup: {
-            type: '',
-            source: '',
-            days: ''
-          }
+        catchup: {
+          type: '',
+          source: '',
+          days: ''
+        }
       }
     ]
   })
