@@ -50,7 +50,7 @@ Parser.parse = content => {
 }
 
 function parseHeader(line) {
-  const supportedAttrs = ['x-tvg-url']
+  const supportedAttrs = ['x-tvg-url', 'url-tvg']
 
   let attrs = {}
   for (let attrName of supportedAttrs) {
