@@ -63,6 +63,7 @@ Output:
       },
       url: 'http://example.com/stream.m3u8',
       raw: '#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-language="English" tvg-country="US" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)\n#EXTVLCOPT:http-referrer=http://example.com/\n#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)\nhttp://example.com/stream.m3u8',
+      line: 2,
       timeshift: '3',
       catchup: {
         type: 'shift',
