@@ -7,6 +7,7 @@ Parser.parse = content => {
   }
 
   let manifest = content.split(/(?=#EXTINF)/).map(l => l.trim())
+  const lines = content.split('\n').map(l => l.trim())
 
   const firstLine = manifest.shift()
 
@@ -14,39 +15,49 @@ Parser.parse = content => {
 
   playlist.header = parseHeader(firstLine)
 
-  for (let line of manifest) {
+  for (let stream of manifest) {
     const item = {
-      name: line.getName(),
+      name: stream.getName(),
       tvg: {
-        id: line.getAttribute('tvg-id'),
-        name: line.getAttribute('tvg-name'),
-        language: line.getAttribute('tvg-language'),
-        country: line.getAttribute('tvg-country'),
-        logo: line.getAttribute('tvg-logo'),
-        url: line.getAttribute('tvg-url'),
-        rec: line.getAttribute('tvg-rec')
+        id: stream.getAttribute('tvg-id'),
+        name: stream.getAttribute('tvg-name'),
+        language: stream.getAttribute('tvg-language'),
+        country: stream.getAttribute('tvg-country'),
+        logo: stream.getAttribute('tvg-logo'),
+        url: stream.getAttribute('tvg-url'),
+        rec: stream.getAttribute('tvg-rec')
       },
       group: {
-        title: line.getGroup() || line.getAttribute('group-title')
+        title: stream.getGroup() || stream.getAttribute('group-title')
       },
       http: {
-        referrer: line.getVlcOption('http-referrer') || line.getKodiOption('Referer'),
-        'user-agent': line.getVlcOption('http-user-agent') || line.getKodiOption('User-Agent') || line.getAttribute('user-agent')
+        referrer: stream.getVlcOption('http-referrer') || stream.getKodiOption('Referer'),
+        'user-agent':
+          stream.getVlcOption('http-user-agent') ||
+          stream.getKodiOption('User-Agent') ||
+          stream.getAttribute('user-agent')
       },
-      url: line.getURL(),
-      raw: line,
+      url: stream.getURL(),
+      raw: stream,
+      line: indexOf(lines, stream),
       catchup: {
-        type: line.getAttribute('catchup'),
-        days: line.getAttribute('catchup-days'),
-        source: line.getAttribute('catchup-source')
+        type: stream.getAttribute('catchup'),
+        days: stream.getAttribute('catchup-days'),
+        source: stream.getAttribute('catchup-source')
       },
-      timeshift: line.getAttribute('timeshift')
+      timeshift: stream.getAttribute('timeshift')
     }
 
     playlist.items.push(item)
   }
 
   return playlist
+}
+
+function indexOf(lines, stream) {
+  const line = stream.split('\n')[0]
+
+  return lines.indexOf(line.trim())
 }
 
 function parseHeader(line) {
@@ -68,14 +79,15 @@ function parseHeader(line) {
 
 function getFullUrl(url) {
   const supportedTags = ['#EXTVLCOPT', '#EXTINF', '#EXTGRP']
-  const last = url.split('\n')
+  const last = url
+    .split('\n')
     .filter(l => l)
     .map(l => l.trim())
     .filter(l => {
       return supportedTags.every(t => !l.startsWith(t))
     })
     .shift()
-    return last || '';
+  return last || ''
 }
 
 String.prototype.getAttribute = function (name) {
