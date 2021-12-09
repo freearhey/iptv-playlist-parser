@@ -57,7 +57,7 @@ Parser.parse = content => {
     const index = lines.indexOf(line.trim(), cursor)
     cursor = index + 1
 
-    return index
+    return index + 1
   }
 
   return playlist
