@@ -8,6 +8,7 @@ Parser.parse = content => {
 
   let manifest = content.split(/(?=#EXTINF)/).map(l => l.trim())
   const lines = content.split('\n').map(l => l.trim())
+  let cursor = 0
 
   const firstLine = manifest.shift()
 
@@ -51,13 +52,15 @@ Parser.parse = content => {
     playlist.items.push(item)
   }
 
+  function indexOf(lines, stream) {
+    const line = stream.split('\n')[0]
+    const index = lines.indexOf(line.trim(), cursor)
+    cursor = index + 1
+
+    return index
+  }
+
   return playlist
-}
-
-function indexOf(lines, stream) {
-  const line = stream.split('\n')[0]
-
-  return lines.indexOf(line.trim())
 }
 
 function parseHeader(line) {
