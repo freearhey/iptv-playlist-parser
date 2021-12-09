@@ -377,3 +377,49 @@ http://my-news-stream:8999/d/letsplay/video.mp4|Referer=http://test.abc/blank.ht
     ]
   })
 })
+
+it('could parse playlist with url-tvg in header', () => {
+  const playlist = `
+#EXTM3U url-tvg="http://195.154.221.171/epg/guidealbania.xml.gz"
+#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" group-title="Entertainment",Agromais
+https://agromais/playlist.m3u8
+  `
+  expect(parser.parse(playlist)).toStrictEqual({
+    header: {
+      attrs: {
+        'url-tvg': 'http://195.154.221.171/epg/guidealbania.xml.gz'
+      },
+      raw: '#EXTM3U url-tvg="http://195.154.221.171/epg/guidealbania.xml.gz"'
+    },
+    items: [
+      {
+        name: 'Agromais',
+        tvg: {
+          id: 'Agromais.br',
+          name: '',
+          language: '',
+          country: '',
+          logo: '',
+          url: '',
+          rec: ''
+        },
+        group: {
+          title: 'Entertainment'
+        },
+        http: {
+          referrer: '',
+          'user-agent':
+            'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+        },
+        url: 'https://agromais/playlist.m3u8',
+        raw: `#EXTINF:-1 tvg-id="Agromais.br" user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" group-title="Entertainment",Agromais\nhttps://agromais/playlist.m3u8`,
+        timeshift: '',
+        catchup: {
+          type: '',
+          source: '',
+          days: ''
+        }
+      }
+    ]
+  })
+})
