@@ -1,3 +1,6 @@
+const { isUri: isValidUrl } = require('valid-url')
+const isValidPath = require('is-valid-path')
+
 const Parser = {}
 
 Parser.parse = content => {
@@ -6,61 +9,88 @@ Parser.parse = content => {
     items: []
   }
 
-  let manifest = content.split(/(?=#EXTINF)/).map(l => l.trim())
-  const lines = content.split('\n').map(l => l.trim())
-  let cursor = 0
+  let lines = content.split('\n').map(parseLine)
+  let firstLine = lines.find(l => l.index === 0)
 
-  const firstLine = manifest.shift()
-
-  if (!firstLine || !/#EXTM3U/.test(firstLine)) throw new Error('Playlist is not valid')
+  if (!firstLine || !/^#EXTM3U/.test(firstLine.raw)) throw new Error('Playlist is not valid')
 
   playlist.header = parseHeader(firstLine)
 
-  for (let stream of manifest) {
-    const item = {
-      name: stream.getName(),
-      tvg: {
-        id: stream.getAttribute('tvg-id'),
-        name: stream.getAttribute('tvg-name'),
-        language: stream.getAttribute('tvg-language'),
-        country: stream.getAttribute('tvg-country'),
-        logo: stream.getAttribute('tvg-logo'),
-        url: stream.getAttribute('tvg-url'),
-        rec: stream.getAttribute('tvg-rec')
-      },
-      group: {
-        title: stream.getGroup() || stream.getAttribute('group-title')
-      },
-      http: {
-        referrer: stream.getVlcOption('http-referrer') || stream.getKodiOption('Referer'),
-        'user-agent':
-          stream.getVlcOption('http-user-agent') ||
-          stream.getKodiOption('User-Agent') ||
-          stream.getAttribute('user-agent')
-      },
-      url: stream.getURL(),
-      raw: stream,
-      line: indexOf(lines, stream),
-      catchup: {
-        type: stream.getAttribute('catchup'),
-        days: stream.getAttribute('catchup-days'),
-        source: stream.getAttribute('catchup-source')
-      },
-      timeshift: stream.getAttribute('timeshift')
+  let i = 0
+  const items = {}
+  for (let line of lines) {
+    if (line.index === 0) continue
+    const string = line.raw.toString().trim()
+    if (string.startsWith('#EXTINF:')) {
+      const EXTINF = string
+      items[i] = {
+        name: EXTINF.getName(),
+        tvg: {
+          id: EXTINF.getAttribute('tvg-id'),
+          name: EXTINF.getAttribute('tvg-name'),
+          language: EXTINF.getAttribute('tvg-language'),
+          country: EXTINF.getAttribute('tvg-country'),
+          logo: EXTINF.getAttribute('tvg-logo'),
+          url: EXTINF.getAttribute('tvg-url'),
+          rec: EXTINF.getAttribute('tvg-rec')
+        },
+        group: {
+          title: EXTINF.getAttribute('group-title')
+        },
+        http: {
+          referrer: '',
+          'user-agent': EXTINF.getAttribute('user-agent')
+        },
+        url: undefined,
+        raw: line.raw,
+        line: line.index + 1,
+        catchup: {
+          type: EXTINF.getAttribute('catchup'),
+          days: EXTINF.getAttribute('catchup-days'),
+          source: EXTINF.getAttribute('catchup-source')
+        },
+        timeshift: EXTINF.getAttribute('timeshift')
+      }
+    } else if (string.startsWith('#EXTVLCOPT:')) {
+      if (!items[i]) continue
+      const EXTVLCOPT = string
+      items[i].http.referrer = EXTVLCOPT.getOption('http-referrer') || items[i].http.referrer
+      items[i].http['user-agent'] =
+        EXTVLCOPT.getOption('http-user-agent') || items[i].http['user-agent']
+      items[i].raw += `\r\n${line.raw}`
+    } else if (string.startsWith('#EXTGRP:')) {
+      if (!items[i]) continue
+      const EXTGRP = string
+      items[i].group.title = EXTGRP.getValue() || items[i].group.title
+      items[i].raw += `\r\n${line.raw}`
+    } else {
+      if (!items[i]) continue
+      const url = string.getURL()
+      const user_agent = string.getParameter('user-agent')
+      const referrer = string.getParameter('referer')
+      if (url && (isValidPath(url) || isValidUrl(url))) {
+        items[i].url = url
+        items[i].http['user-agent'] = user_agent || items[i].http['user-agent']
+        items[i].http.referrer = referrer || items[i].http.referrer
+        items[i].raw += `\r\n${line.raw}`
+        i++
+      } else {
+        if (!items[i]) continue
+        items[i].raw += `\r\n${line.raw}`
+      }
     }
-
-    playlist.items.push(item)
   }
 
-  function indexOf(lines, stream) {
-    const line = stream.split('\n')[0]
-    const index = lines.indexOf(line.trim(), cursor)
-    cursor = index + 1
-
-    return index + 1
-  }
+  playlist.items = Object.values(items)
 
   return playlist
+}
+
+function parseLine(line, index) {
+  return {
+    index,
+    raw: line
+  }
 }
 
 function parseHeader(line) {
@@ -68,7 +98,7 @@ function parseHeader(line) {
 
   let attrs = {}
   for (let attrName of supportedAttrs) {
-    const tvgUrl = line.getAttribute(attrName)
+    const tvgUrl = line.raw.getAttribute(attrName)
     if (tvgUrl) {
       attrs[attrName] = tvgUrl
     }
@@ -76,28 +106,8 @@ function parseHeader(line) {
 
   return {
     attrs,
-    raw: line
+    raw: line.raw
   }
-}
-
-function getFullUrl(url) {
-  const supportedTags = ['#EXTVLCOPT', '#EXTINF', '#EXTGRP']
-  const last = url
-    .split('\n')
-    .filter(l => l)
-    .map(l => l.trim())
-    .filter(l => {
-      return supportedTags.every(t => !l.startsWith(t))
-    })
-    .shift()
-  return last || ''
-}
-
-String.prototype.getAttribute = function (name) {
-  let regex = new RegExp(name + '="(.*?)"', 'gi')
-  let match = regex.exec(this)
-
-  return match && match[1] ? match[1] : ''
 }
 
 String.prototype.getName = function () {
@@ -109,29 +119,36 @@ String.prototype.getName = function () {
   return name || ''
 }
 
-String.prototype.getVlcOption = function (name) {
-  let regex = new RegExp('#EXTVLCOPT:' + name + '=(.*)', 'gi')
-  let match = regex.exec(this)
-
-  return match && match[1] && typeof match[1] === 'string' ? match[1].replace(/\"/g, '') : ''
-}
-
-String.prototype.getGroup = function () {
-  let regex = new RegExp('#EXTGRP:(.*)', 'gi')
+String.prototype.getAttribute = function (name) {
+  let regex = new RegExp(name + '="(.*?)"', 'gi')
   let match = regex.exec(this)
 
   return match && match[1] ? match[1] : ''
 }
 
-String.prototype.getURL = function () {
-  const last = getFullUrl(this).split('|')[0]
-  return last || ''
+String.prototype.getOption = function (name) {
+  let regex = new RegExp(':' + name + '=(.*)', 'gi')
+  let match = regex.exec(this)
+
+  return match && match[1] && typeof match[1] === 'string' ? match[1].replace(/\"/g, '') : ''
 }
 
-String.prototype.getKodiOption = function (name) {
-  const url = getFullUrl(this)
-  const regex = new RegExp(name + '=(\\w[^&]*)', 'g')
-  const match = regex.exec(url)
+String.prototype.getValue = function (name) {
+  let regex = new RegExp(':(.*)', 'gi')
+  let match = regex.exec(this)
+
+  return match && match[1] && typeof match[1] === 'string' ? match[1].replace(/\"/g, '') : ''
+}
+
+String.prototype.getURL = function () {
+  return this.split('|')[0] || ''
+}
+
+String.prototype.getParameter = function (name) {
+  const params = this.replace(/^(.*)\|/, '')
+  const regex = new RegExp(name + '=(\\w[^&]*)', 'gi')
+  const match = regex.exec(params)
+
   return match && match[1] ? match[1] : ''
 }
 
