@@ -2,7 +2,7 @@
 
 It parses IPTV playlist and converts it to a regular JavaScript object.
 
-## Installation ![npm](https://img.shields.io/npm/dm/iptv-playlist-parser)
+## Installation
 
 ```sh
 npm install iptv-playlist-parser
