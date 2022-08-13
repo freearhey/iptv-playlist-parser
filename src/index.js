@@ -28,8 +28,6 @@ Parser.parse = content => {
         tvg: {
           id: EXTINF.getAttribute('tvg-id'),
           name: EXTINF.getAttribute('tvg-name'),
-          language: EXTINF.getAttribute('tvg-language'),
-          country: EXTINF.getAttribute('tvg-country'),
           logo: EXTINF.getAttribute('tvg-logo'),
           url: EXTINF.getAttribute('tvg-url'),
           rec: EXTINF.getAttribute('tvg-rec')
