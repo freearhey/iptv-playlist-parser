@@ -16,8 +16,6 @@ it('parse playlist', () => {
         tvg: {
           id: 'CH1',
           name: 'Ch 1',
-          language: 'English',
-          country: 'US',
           logo: 'http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png',
           url: 'http://195.154.221.171/epg/guide.xml.gz',
           rec: '3'
@@ -31,7 +29,7 @@ it('parse playlist', () => {
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36'
         },
         url: 'http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
-        raw: '    #EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-language="English" tvg-country="US" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-rec="3" group-title="Music",Channel 1 (Tested)\r\n    #EXTGRP:Только Android\r\n    #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/\r\n    #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\r\n    http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
+        raw: '    #EXTINF:-1 tvg-ID="CH1" tvg-name="Ch 1" tvg-logo="http://www.rtvchannel.com.au/wp-content/uploads/2017/04/xshow_08.png,Mic_.2KNN9OHw1p.png.pagespeed.ce.2KNN9OHw1p.png" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-rec="3" group-title="Music",Channel 1 (Tested)\r\n    #EXTGRP:Только Android\r\n    #EXTVLCOPT:http-referrer=http://player.livesports.pw/la2/\r\n    #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.25 Safari/537.36\r\n    http://livestream.htp.tv/hls-live/livepkgr/_definst_/H1/H1_HQ.m3u8',
         line: 2,
         timeshift: '',
         catchup: {
@@ -45,8 +43,6 @@ it('parse playlist', () => {
         tvg: {
           id: 'CH2',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -73,8 +69,6 @@ it('parse playlist', () => {
         tvg: {
           id: '',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -101,8 +95,6 @@ it('parse playlist', () => {
         tvg: {
           id: '',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -129,8 +121,6 @@ it('parse playlist', () => {
         tvg: {
           id: '',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -168,8 +158,6 @@ it('could parse playlist with comments', () => {
         tvg: {
           id: '',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -207,8 +195,6 @@ it('could parse playlist with #EXTGRP and #EXTVLCOPT tag', () => {
         tvg: {
           id: '',
           name: 'TestChannel',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -246,8 +232,6 @@ it('could parse playlist with user agent in attribute', () => {
         tvg: {
           id: 'Agromais.br',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -286,8 +270,6 @@ it('could parse playlist with user agent and referer in the url string', () => {
         tvg: {
           id: 'SportChannel',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -314,8 +296,6 @@ it('could parse playlist with user agent and referer in the url string', () => {
         tvg: {
           id: 'News99',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -356,8 +336,6 @@ it('could parse playlist with url-tvg in header', () => {
         tvg: {
           id: 'Agromais.br',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -398,8 +376,6 @@ it('could parse playlist with duplicates', () => {
         tvg: {
           id: 'Agromais.br',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -427,8 +403,6 @@ it('could parse playlist with duplicates', () => {
         tvg: {
           id: 'Agromais.br',
           name: '',
-          language: '',
-          country: '',
           logo: '',
           url: '',
           rec: ''
@@ -469,8 +443,6 @@ it('can parse playlist with #KODIPROP', () => {
         tvg: {
           id: 'rtp1hd.tv.vodafone.pt',
           name: '',
-          language: '',
-          country: '',
           logo: 'https://raw.githubusercontent.com/LITUATUI/M3UPT/main/logos/RTP1.png',
           url: '',
           rec: ''
