@@ -10,8 +10,6 @@ export interface PlaylistHeader {
 export interface PlaylistItemTvg {
   id: string
   name: string
-  language: string
-  country: string
   url: string
   logo: string
   rec: string
@@ -29,10 +27,10 @@ export interface PlaylistItem {
   }
   url: string
   raw: string
-  timeshift: '',
+  timeshift: ''
   catchup: {
-    type: '',
-    source: '',
+    type: ''
+    source: ''
     days: ''
   }
 }
