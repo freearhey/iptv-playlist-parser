@@ -1,4 +1,4 @@
-const { isUri: isValidUrl } = require('valid-url')
+const { isURL: isValidUrl } = require('validator')
 const isValidPath = require('is-valid-path')
 
 const Parser = {}
