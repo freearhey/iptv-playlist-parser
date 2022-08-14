@@ -127,8 +127,8 @@ export default {
         referrer: '',
         'user-agent': ''
       },
-      url: 'http://100.101.102.103:1000/index.m3u8',
-      raw: `#EXTINF: -1, name\r\nhttp://100.101.102.103:1000/index.m3u8`,
+      url: 'http://free.fullspeed.tv/iptv-query?streaming-ip=https://www.youtube.com/c/CongresodelaRepúblicadelPerúTVenvivo/live',
+      raw: `#EXTINF: -1, name\r\nhttp://free.fullspeed.tv/iptv-query?streaming-ip=https://www.youtube.com/c/CongresodelaRepúblicadelPerúTVenvivo/live`,
       line: 17,
       timeshift: '',
       catchup: {
