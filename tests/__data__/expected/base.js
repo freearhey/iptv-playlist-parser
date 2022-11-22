@@ -112,7 +112,7 @@ export default {
       }
     },
     {
-      name: ' name',
+      name: ' name,with comma',
       tvg: {
         id: '',
         name: '',
@@ -128,8 +128,34 @@ export default {
         'user-agent': ''
       },
       url: 'http://free.fullspeed.tv/iptv-query?streaming-ip=https://www.youtube.com/c/CongresodelaRepúblicadelPerúTVenvivo/live',
-      raw: `#EXTINF: -1, name\r\nhttp://free.fullspeed.tv/iptv-query?streaming-ip=https://www.youtube.com/c/CongresodelaRepúblicadelPerúTVenvivo/live`,
+      raw: `#EXTINF: -1, name,with comma\r\nhttp://free.fullspeed.tv/iptv-query?streaming-ip=https://www.youtube.com/c/CongresodelaRepúblicadelPerúTVenvivo/live`,
       line: 17,
+      timeshift: '',
+      catchup: {
+        type: '',
+        source: '',
+        days: ''
+      }
+    },
+    {
+      name: 'The Good, the Bad and the Ugly',
+      tvg: {
+        id: '',
+        name: 'The Good, the Bad and the Ugly',
+        logo: '',
+        url: '',
+        rec: ''
+      },
+      group: {
+        title: ''
+      },
+      http: {
+        referrer: '',
+        'user-agent': ''
+      },
+      url: 'movie.m3u8',
+      raw: `#EXTINF: -1 tvg-name="The Good, the Bad and the Ugly",The Good, the Bad and the Ugly\r\nmovie.m3u8`,
+      line: 19,
       timeshift: '',
       catchup: {
         type: '',
