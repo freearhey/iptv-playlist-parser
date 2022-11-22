@@ -109,12 +109,10 @@ function parseHeader(line) {
 }
 
 String.prototype.getName = function () {
-  let name = this.split(/[\r\n]+/)
-    .shift()
-    .split(',')
-    .pop()
+  let info = this.replace(/\="(.*?)"/g, '')
+  let parts = info.split(/,(.*)/)
 
-  return name || ''
+  return parts[1] || ''
 }
 
 String.prototype.getAttribute = function (name) {
