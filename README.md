@@ -10,8 +10,11 @@ npm install iptv-playlist-parser
 
 ## Usage
 
+### From string
+
 ```js
 import parser from 'iptv-playlist-parser'
+// const parser = require('iptv-playlist-parser')
 
 const playlist = `#EXTM3U x-tvg-url="http://example.com/epg.xml.gz"
 #EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-url="http://195.154.221.171/epg/guide.xml.gz" timeshift="3" catchup="shift" catchup-days="3" catchup-source="https://m3u-server/hls-apple-s4-c494-abcdef.m3u8?utc=325234234&lutc=3123125324" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)
@@ -23,6 +26,46 @@ http://example.com/stream.m3u8`
 const result = parser.parse(playlist)
 
 console.log(result)
+```
+
+### From file
+
+```js
+import fs from 'fs'
+import parser from 'iptv-playlist-parser'
+
+const playlist = fs.readFileSync('playlist.m3u', 'utf8')
+
+const result = parser.parse(playlist)
+
+console.log(result)
+```
+
+### From URL
+
+```js
+import https from 'https'
+import parser from 'iptv-playlist-parser'
+
+https
+  .get('https://example.com/playlist.m3u', res => {
+    let data = []
+
+    res.on('data', chunk => {
+      data.push(chunk)
+    })
+
+    res.on('end', () => {
+      const playlist = Buffer.concat(data).toString()
+
+      const result = parser.parse(playlist)
+
+      console.log(result)
+    })
+  })
+  .on('error', err => {
+    console.error(err.message)
+  })
 ```
 
 ## Output
