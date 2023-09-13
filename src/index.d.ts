@@ -27,6 +27,7 @@ export interface PlaylistItem {
   }
   url: string
   raw: string
+  line: number
   timeshift: ''
   catchup: {
     type: ''
