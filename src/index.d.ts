@@ -13,6 +13,7 @@ export interface PlaylistItemTvg {
   url: string
   logo: string
   rec: string
+  shift: string
 }
 
 export interface PlaylistItem {
