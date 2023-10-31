@@ -13,7 +13,8 @@ export default {
         name: '',
         logo: '',
         url: '',
-        rec: ''
+        rec: '',
+        shift: ''
       },
       group: {
         title: 'Entertainment'
@@ -40,7 +41,8 @@ export default {
         name: '',
         logo: '',
         url: '',
-        rec: ''
+        rec: '',
+        shift: ''
       },
       group: {
         title: 'Entertainment'

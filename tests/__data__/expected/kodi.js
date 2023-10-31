@@ -13,7 +13,8 @@ export default {
         name: '',
         logo: 'https://raw.githubusercontent.com/LITUATUI/M3UPT/main/logos/RTP1.png',
         url: '',
-        rec: ''
+        rec: '',
+        shift: ''
       },
       group: {
         title: 'TV'

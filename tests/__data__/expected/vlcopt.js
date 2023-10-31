@@ -11,7 +11,8 @@ export default {
         name: 'TestChannel',
         logo: '',
         url: '',
-        rec: ''
+        rec: '',
+        shift: ''
       },
       group: {
         title: 'News'

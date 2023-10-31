@@ -11,7 +11,8 @@ export default {
         name: '',
         logo: '',
         url: '',
-        rec: ''
+        rec: '',
+        shift: ''
       },
       group: {
         title: ''
@@ -37,7 +38,8 @@ export default {
         name: '',
         logo: '',
         url: '',
-        rec: ''
+        rec: '',
+        shift: ''
       },
       group: {
         title: ''
