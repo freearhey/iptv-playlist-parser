@@ -30,7 +30,8 @@ Parser.parse = content => {
           name: EXTINF.getAttribute('tvg-name'),
           logo: EXTINF.getAttribute('tvg-logo'),
           url: EXTINF.getAttribute('tvg-url'),
-          rec: EXTINF.getAttribute('tvg-rec')
+          rec: EXTINF.getAttribute('tvg-rec'),
+          shift: EXTINF.getAttribute('tvg-shift')
         },
         group: {
           title: EXTINF.getAttribute('group-title')
