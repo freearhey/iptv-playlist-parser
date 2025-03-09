@@ -29,12 +29,13 @@ export interface PlaylistItem {
   url: string
   raw: string
   line: number
-  timeshift: ''
+  timeshift: string
   catchup: {
-    type: ''
-    source: ''
-    days: ''
+    type: string
+    source: string
+    days: string
   }
+  lang: string
 }
 
 export interface Playlist {
