@@ -17,7 +17,7 @@ const parser = require('iptv-playlist-parser')
 // import parser from 'iptv-playlist-parser'
 
 const playlist = `#EXTM3U x-tvg-url="http://example.com/epg.xml.gz"
-#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-shift="-4.5" timeshift="3" catchup="shift" catchup-days="3" catchup-source="https://m3u-server/hls-apple-s4-c494-abcdef.m3u8?utc=325234234&lutc=3123125324" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)
+#EXTINF:-1 tvg-id="cnn.us" tvg-name="CNN" tvg-url="http://195.154.221.171/epg/guide.xml.gz" tvg-shift="-4.5" timeshift="3" catchup="shift" catchup-days="3" catchup-source="https://m3u-server/hls-apple-s4-c494-abcdef.m3u8?utc=325234234&lutc=3123125324" lang="eng" tvg-logo="http://example.com/logo.png" group-title="News",CNN (US)
 #EXTGRP:News
 #EXTVLCOPT:http-referrer=http://example.com/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)
@@ -104,7 +104,8 @@ https
         type: 'shift',
         source: 'https://m3u-server/hls-apple-s4-c494-abcdef.m3u8?utc=325234234&lutc=3123125324',
         days: '3'
-      }
+      },
+      lang: 'eng'
     },
     //...
   ]
