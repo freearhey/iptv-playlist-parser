@@ -32,7 +32,8 @@ export default {
         type: '',
         source: '',
         days: ''
-      }
+      },
+      lang: ''
     }
   ]
 }

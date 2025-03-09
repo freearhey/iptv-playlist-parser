@@ -29,7 +29,8 @@ export default {
         type: '',
         source: '',
         days: ''
-      }
+      },
+      lang: ''
     },
     {
       name: 'News channel',
@@ -57,7 +58,8 @@ export default {
         type: '',
         source: '',
         days: ''
-      }
+      },
+      lang: ''
     }
   ]
 }

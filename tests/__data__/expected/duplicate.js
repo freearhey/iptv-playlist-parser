@@ -32,7 +32,8 @@ export default {
         type: '',
         source: '',
         days: ''
-      }
+      },
+      lang: ''
     },
     {
       name: 'Agromais',
@@ -60,7 +61,8 @@ export default {
         type: '',
         source: '',
         days: ''
-      }
+      },
+      lang: ''
     }
   ]
 }
