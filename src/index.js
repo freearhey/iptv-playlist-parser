@@ -63,12 +63,15 @@ Parser.parse = content => {
       const EXTGRP = string
       items[i].group.title = EXTGRP.getValue() || items[i].group.title
       items[i].raw += `\r\n${line.raw}`
+    } else if (string.startsWith('#')) {
+      if (!items[i]) continue
+      items[i].raw += `\r\n${line.raw}`
     } else {
       if (!items[i]) continue
-      const url = string.getURL()
+      const url = string
       const user_agent = string.getParameter('user-agent')
       const referrer = string.getParameter('referer')
-      if (url && (isValidPath(url) || isValidUrl(url))) {
+      if (url) {
         items[i].url = url
         items[i].http['user-agent'] = user_agent || items[i].http['user-agent']
         items[i].http.referrer = referrer || items[i].http.referrer
@@ -136,10 +139,6 @@ String.prototype.getValue = function (name) {
   let match = regex.exec(this)
 
   return match && match[1] && typeof match[1] === 'string' ? match[1].replace(/\"/g, '') : ''
-}
-
-String.prototype.getURL = function () {
-  return this.split('|')[0] || ''
 }
 
 String.prototype.getParameter = function (name) {
