@@ -9,7 +9,7 @@ Parser.parse = content => {
     items: []
   }
 
-  let lines = content.split('\n').map(parseLine)
+  let lines = content.split(/\r?\n/).map(parseLine)
   let firstLine = lines.find(l => l.index === 0)
 
   if (!firstLine || !/^#EXTM3U/.test(firstLine.raw)) throw new Error('Playlist is not valid')
